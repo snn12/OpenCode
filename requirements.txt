@@ -1,0 +1,4 @@
+# Test app ucun
+prometheus_client
+flask
+requests

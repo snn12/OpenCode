@@ -1,0 +1,13 @@
+import sqlite3
+c = sqlite3.connect('shop.db')
+c.execute('DROP TABLE IF EXISTS users')
+c.execute('DROP TABLE IF EXISTS orders')
+c.execute('CREATE TABLE users(id INTEGER PRIMARY KEY, name TEXT)')
+c.execute('CREATE TABLE orders(id INTEGER PRIMARY KEY, item TEXT, user_id INTEGER)')
+c.execute("INSERT INTO users VALUES (1,'Senan'),(2,'Aysel')")
+c.execute("INSERT INTO orders VALUES (1,'PC',1),(2,'Telefon',1),(3,'PC',2)")
+c.execute('CREATE INDEX idx_orders_user ON orders(user_id)')
+c.commit()
+print('users:', c.execute('SELECT * FROM users').fetchall())
+print('orders:', c.execute('SELECT * FROM orders').fetchall())
+print('join:', c.execute('SELECT orders.id, item, name FROM orders JOIN users ON users.id=orders.user_id').fetchall())

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shop
+  labels: {app: shop}
+spec:
+  replicas: 4
+  selector:
+    matchLabels: {app: shop}
+  template:
+    metadata:
+      labels: {app: shop}
+    spec:
+      containers:
+        - name: shop
+          image: shop:1.0
+          ports: [{containerPort: 5001}]
+          livenessProbe:
+            httpGet: {path: /orders, port: 5001}
+            initialDelaySeconds: 10
+            periodSeconds: 15
+          readinessProbe:
+            httpGet: {path: /orders, port: 5001}
+            periodSeconds: 5

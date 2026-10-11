@@ -1,0 +1,16 @@
+# Prometheus binary + data
+prometheus.zip
+prometheus-3.15.0.windows-amd64/
+data/
+
+# Database
+*.db
+
+# Node
+node_modules/
+
+# Logs
+*.log
+
+# Secrets
+.env

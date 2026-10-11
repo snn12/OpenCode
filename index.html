@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Test Shop</title>
+<!-- GA4: G-NDHH6Z6G1Q -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NDHH6Z6G1Q"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-NDHH6Z6G1Q');
+function buy() {
+  gtag('event', 'purchase', {item: 'PC', value: 100});
+  alert('Sifaris göndərildi!');
+}
+</script>
+</head>
+<body>
+<h1>Test Shop</h1>
+<button onclick="buy()">Al</button>
+</body>
+</html>

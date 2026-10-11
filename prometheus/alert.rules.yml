@@ -1,0 +1,10 @@
+groups:
+  - name: test
+    rules:
+      - alert: AppDown
+        expr: up{job="my-app"} == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "my-app is down"
