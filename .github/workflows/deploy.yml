@@ -1,0 +1,28 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodu yukle
+        uses: actions/checkout@v4
+
+      - name: Dockerfile yoxla (syntax)
+        run: docker build --check .
+
+      - name: Docker image yig
+        run: docker build -t snn12/shop:${{ github.sha }} .
+
+      - name: Syntax yoxla
+        run: python -m py_compile shop_api.py
+
+      - name: Testler
+        run: |
+          docker run --rm -d --name test-shop -p 5001:5001 snn12/shop:${{ github.sha }}
+          sleep 5
+          curl -f http://localhost:5001/orders || exit 1
+          echo "API isledi"
