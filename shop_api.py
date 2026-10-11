@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify  # REST API - shop microservice
 import requests
 
 app = Flask(__name__)
